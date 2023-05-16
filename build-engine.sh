@@ -11,23 +11,8 @@ mozconfig="${working_dir}/mozconfig-${mode}"
 objdir="obj-$mode"
 outdir="$mode"
 
-cat << EOF > "$mozconfig"
-ac_add_options --enable-project=js
-ac_add_options --enable-application=js
-ac_add_options --target=wasm32-unknown-wasi
-ac_add_options --without-system-zlib
-ac_add_options --without-intl-api
-ac_add_options --disable-jit
-ac_add_options --disable-shared-js
-ac_add_options --disable-shared-memory
-ac_add_options --disable-tests
-ac_add_options --disable-clang-plugin
-ac_add_options --enable-jitspew
-ac_add_options --enable-optimize
-ac_add_options --enable-js-streams
-ac_add_options --enable-js-interp-native-callstack
-ac_add_options --enable-js-interp-specialization
-ac_add_options --enable-js-interp-weval
+cat $script_dir/mozconfig.defaults > "$mozconfig"
+cat << EOF >> "$mozconfig"
 ac_add_options --prefix=${working_dir}/${objdir}/dist
 mk_add_options MOZ_OBJDIR=${working_dir}/${objdir}
 mk_add_options AUTOCLOBBER=1

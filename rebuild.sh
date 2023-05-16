@@ -11,7 +11,8 @@ mozconfig="${working_dir}/mozconfig-${mode}"
 objdir="obj-$mode"
 outdir="$mode"
 
-cat << EOF > "$mozconfig"
+cat $script_dir/mozconfig.defaults > "$mozconfig"
+cat << EOF >> "$mozconfig"
 ac_add_options --enable-project=js
 ac_add_options --enable-application=js
 ac_add_options --target=wasm32-unknown-wasi
